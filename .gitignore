@@ -6,3 +6,4 @@ terraform/terraform.tfvars
 terraform/.terraform.lock.hcl
 terraform/*.pem
 terraform/*.pub
+logs/
