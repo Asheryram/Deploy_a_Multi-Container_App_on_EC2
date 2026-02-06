@@ -59,5 +59,15 @@ module "compute" {
   security_group_ids = [module.security.security_group_id]
   volume_size        = var.volume_size
   repo_url           = var.repo_url
-  tags               = local.common_tags
+  
+  # App configuration
+  auto_start       = var.auto_start
+  db_root_password = var.db_root_password
+  db_name          = var.db_name
+  db_user          = var.db_user
+  db_password      = var.db_password
+  frontend_port    = var.frontend_port
+  backend_port     = var.app_port
+  
+  tags = local.common_tags
 }

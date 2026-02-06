@@ -31,6 +31,48 @@ variable "repo_url" {
   default     = ""
 }
 
+variable "auto_start" {
+  description = "Whether to auto-start the application after provisioning"
+  type        = bool
+  default     = true
+}
+
+variable "db_root_password" {
+  description = "MySQL root password"
+  type        = string
+  sensitive   = true
+}
+
+variable "db_name" {
+  description = "MySQL database name"
+  type        = string
+  default     = "appdb"
+}
+
+variable "db_user" {
+  description = "MySQL user"
+  type        = string
+  default     = "appuser"
+}
+
+variable "db_password" {
+  description = "MySQL user password"
+  type        = string
+  sensitive   = true
+}
+
+variable "frontend_port" {
+  description = "Frontend port"
+  type        = number
+  default     = 3000
+}
+
+variable "backend_port" {
+  description = "Backend API port"
+  type        = number
+  default     = 5000
+}
+
 variable "tags" {
   description = "Tags to apply to resources"
   type        = map(string)

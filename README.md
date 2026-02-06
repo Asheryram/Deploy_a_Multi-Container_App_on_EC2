@@ -121,24 +121,49 @@ Terraform outputs:
 - `ssh_command` – Ready-to-use SSH command
 - `private_key_path` – Path to generated .pem file
 
-### Start the App on EC2
+### Auto-Start Mode (Default)
+
+With `auto_start = true` (default), the app starts automatically after Terraform apply:
 
 ```bash
+# Configure credentials (choose one method)
+
+# Method 1: In terraform.tfvars (simple but less secure)
+db_root_password = "your-secure-root-password"
+db_password      = "your-secure-app-password"
+
+# Method 2: Environment variables (recommended)
+export TF_VAR_db_root_password="your-secure-root-password"
+export TF_VAR_db_password="your-secure-app-password"
+
+# Deploy (app starts automatically!)
+terraform apply
+
+# Access immediately
+# Frontend: http://<public_ip>:3000
+# Backend:  http://<public_ip>:5000
+```
+
+### Manual Start Mode
+
+With `auto_start = false`, you SSH in and configure manually:
+
+```bash
+# In terraform.tfvars
+auto_start = false
+
+terraform apply
+
 # SSH into the instance (command from terraform output)
 ssh -i ./timesheet-app-key.pem ec2-user@<public_ip>
 
 # Wait for setup to complete
 cat ~/setup-complete.txt
 
-# Start the app
+# Configure and start
 cd ~/app
-cp .env.example .env
 nano .env  # Set secure passwords
 bash scripts/deploy.sh up
-
-# Access online
-# Frontend: http://<public_ip>:3000
-# Backend:  http://<public_ip>:5000
 ```
 
 ### Cleanup

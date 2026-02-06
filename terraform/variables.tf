@@ -1,7 +1,7 @@
 variable "aws_region" {
   description = "AWS region"
   type        = string
-  default     = "us-east-1"
+  default     = "eu-central-1"
 }
 
 variable "environment" {
@@ -35,15 +35,21 @@ variable "key_path" {
 }
 
 variable "allowed_ssh_cidr" {
-  description = "CIDR block allowed to SSH (use your IP for security, e.g., 1.2.3.4/32)"
+  description = "CIDR block allowed to SSH (use your IP for security)"
   type        = string
   default     = "0.0.0.0/0"
 }
 
 variable "app_port" {
-  description = "Application port to expose"
+  description = "Backend API port"
   type        = number
   default     = 5000
+}
+
+variable "frontend_port" {
+  description = "Frontend port"
+  type        = number
+  default     = 3000
 }
 
 variable "volume_size" {
@@ -55,5 +61,33 @@ variable "volume_size" {
 variable "repo_url" {
   description = "Git repository URL to clone"
   type        = string
-  default     = "https://github.com/YOUR_USERNAME/Deploy_a_Multi-Container_App_on_EC2.git"
+}
+
+variable "auto_start" {
+  description = "Auto-start the application after provisioning"
+  type        = bool
+  default     = true
+}
+
+# Database credentials (sensitive)
+variable "db_root_password" {
+  description = "MySQL root password"
+  type        = string
+  sensitive   = true
+}
+
+variable "db_name" {
+  description = "MySQL database name"
+  type        = string
+}
+
+variable "db_user" {
+  description = "MySQL user"
+  type        = string
+}
+
+variable "db_password" {
+  description = "MySQL user password"
+  type        = string
+  sensitive   = true
 }

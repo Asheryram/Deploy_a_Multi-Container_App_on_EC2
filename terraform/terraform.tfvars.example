@@ -15,6 +15,19 @@ key_path         = "."  # Where to save the .pem file
 # key_name        = "your-existing-key-name"
 
 allowed_ssh_cidr = "0.0.0.0/0"  # Replace with your IP: "x.x.x.x/32"
+frontend_port    = 3000
 app_port         = 5000
 volume_size      = 20
 repo_url         = "https://github.com/YOUR_USERNAME/Deploy_a_Multi-Container_App_on_EC2.git"
+
+# Auto-start configuration
+auto_start       = true  # Set to false to manually start after SSH
+
+# Database credentials (CHANGE THESE IN PRODUCTION!)
+# For better security, use environment variables:
+#   export TF_VAR_db_root_password="your-secure-password"
+#   export TF_VAR_db_password="your-secure-password"
+db_root_password = "rootpassword123!"
+db_name          = "appdb"
+db_user          = "appuser"
+db_password      = "apppassword123!"
