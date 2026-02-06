@@ -1,30 +1,45 @@
 #!/bin/bash
 set -e
 
-echo "Starting setup..." | tee /var/log/user-data.log
+exec > >(tee /var/log/user-data.log) 2>&1
+echo "Starting setup at $(date)..."
 
-# Update system
-yum update -y 2>&1 | tee -a /var/log/user-data.log
+# Detect OS and install Docker accordingly
+if command -v dnf &>/dev/null; then
+    echo "Detected Amazon Linux 2023 / dnf-based system"
+    
+    # Update system
+    dnf update -y
+    
+    # Install Docker
+    dnf install -y docker git
+    
+else
+    echo "Detected Amazon Linux 2 / yum-based system"
+    
+    # Update system
+    yum update -y
+    
+    # Install Docker
+    amazon-linux-extras install docker -y
+    yum install -y git
+fi
 
-# Install Docker
-amazon-linux-extras install docker -y 2>&1 | tee -a /var/log/user-data.log
+# Start Docker
 systemctl start docker
 systemctl enable docker
 usermod -a -G docker ec2-user
 
-# Install Docker Compose v2
+# Install Docker Compose v2 (standalone)
 DOCKER_COMPOSE_VERSION="v2.24.0"
 curl -SL "https://github.com/docker/compose/releases/download/$${DOCKER_COMPOSE_VERSION}/docker-compose-linux-x86_64" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 ln -sf /usr/local/bin/docker-compose /usr/bin/docker-compose
 
-# Install git
-yum install -y git 2>&1 | tee -a /var/log/user-data.log
-
 # Clone the repository if URL provided
 %{ if repo_url != "" ~}
 cd /home/ec2-user
-git clone ${repo_url} app 2>&1 | tee -a /var/log/user-data.log || echo "Clone failed or repo already exists"
+git clone ${repo_url} app 2>&1 || echo "Clone failed or repo already exists"
 chown -R ec2-user:ec2-user /home/ec2-user/app
 
 # Create .env file with Terraform-injected secrets
@@ -45,11 +60,23 @@ chown ec2-user:ec2-user /home/ec2-user/app/.env
 chmod 600 /home/ec2-user/app/.env
 
 %{ if auto_start ~}
-# Auto-start the application using deploy script
-echo "Starting application..." | tee -a /var/log/user-data.log
+# Auto-start the application
+echo "Starting application..."
 cd /home/ec2-user/app
-sudo -u ec2-user bash scripts/deploy.sh up 2>&1 | tee -a /var/log/user-data.log
-echo "Application started!" | tee -a /var/log/user-data.log
+
+# Wait for docker to be fully ready
+sleep 5
+
+# Run docker-compose directly (more reliable than deploy script in user_data)
+docker-compose up --build -d 2>&1
+
+# Wait for containers to start
+sleep 10
+
+# Check status
+echo "Container status:"
+docker-compose ps
+echo "Application started!"
 %{ endif ~}
 %{ endif ~}
 
@@ -58,6 +85,9 @@ echo "Docker version: $(docker --version)" >> /home/ec2-user/setup-complete.txt
 echo "Docker Compose version: $(docker-compose --version)" >> /home/ec2-user/setup-complete.txt
 %{ if auto_start ~}
 echo "Application auto-started: YES" >> /home/ec2-user/setup-complete.txt
+echo "" >> /home/ec2-user/setup-complete.txt
+echo "Container status:" >> /home/ec2-user/setup-complete.txt
+cd /home/ec2-user/app && docker-compose ps >> /home/ec2-user/setup-complete.txt 2>&1
 %{ else ~}
-echo "Application auto-started: NO (run 'cd ~/app && bash scripts/deploy.sh up')" >> /home/ec2-user/setup-complete.txt
+echo "Application auto-started: NO (run 'cd ~/app && docker-compose up --build -d')" >> /home/ec2-user/setup-complete.txt
 %{ endif ~}
