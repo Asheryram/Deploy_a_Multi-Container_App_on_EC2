@@ -1,5 +1,26 @@
+# Get latest Amazon Linux 2023 AMI dynamically
+data "aws_ami" "amazon_linux" {
+  most_recent = true
+  owners      = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["al2023-ami-*-x86_64"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
+}
+
 resource "aws_instance" "this" {
-  ami                    = var.ami_id
+  ami                    = data.aws_ami.amazon_linux.id
   instance_type          = var.instance_type
   key_name               = var.key_name
   vpc_security_group_ids = var.security_group_ids
@@ -15,10 +36,10 @@ resource "aws_instance" "this" {
     backend_port     = var.backend_port
   })
 
-  root_block_device {
-    volume_size = var.volume_size
-    volume_type = "gp3"
-  }
+#   root_block_device {
+#     volume_size = var.volume_size
+#     volume_type = "gp3"
+#   }
 
   tags = merge(var.tags, {
     Name = "${var.name_prefix}-server"

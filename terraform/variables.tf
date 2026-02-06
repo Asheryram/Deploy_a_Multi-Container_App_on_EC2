@@ -16,13 +16,6 @@ variable "instance_type" {
   default     = "t2.micro"
 }
 
-variable "ami_id" {
-  description = "AMI ID for the EC2 instance (Amazon Linux 2). Find IDs at https://aws.amazon.com/amazon-linux-ami/"
-  type        = string
-  # Default: Amazon Linux 2 in us-east-1 (update for your region)
-  default     = "ami-0c02fb55956c7d316"
-}
-
 variable "create_key_pair" {
   description = "Whether to create a new key pair (true) or use existing (false)"
   type        = bool
@@ -45,6 +38,18 @@ variable "allowed_ssh_cidr" {
   description = "CIDR block allowed to SSH (use your IP for security)"
   type        = string
   default     = "0.0.0.0/0"
+}
+
+variable "create_security_group" {
+  description = "Whether to create a new security group (true) or use existing (false)"
+  type        = bool
+  default     = true
+}
+
+variable "security_group_id" {
+  description = "Existing security group ID (only used if create_security_group is false)"
+  type        = string
+  default     = ""
 }
 
 variable "app_port" {

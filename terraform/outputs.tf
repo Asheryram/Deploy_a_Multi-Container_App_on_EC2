@@ -24,16 +24,16 @@ output "api_url" {
 }
 
 output "ssh_command" {
-  description = "SSH command to connect"
-  value       = var.create_key_pair ? "ssh -i ${module.keypair[0].private_key_path} ec2-user@${module.compute.public_ip}" : "ssh -i <your-key.pem> ec2-user@${module.compute.public_ip}"
+  description = "SSH command to connect (or use EC2 Instance Connect)"
+  value       = var.create_key_pair ? "ssh -i ${module.keypair[0].private_key_path} ec2-user@${module.compute.public_ip}" : local.key_name != "" ? "ssh -i <your-key.pem> ec2-user@${module.compute.public_ip}" : "Use EC2 Instance Connect in AWS Console"
 }
 
 output "private_key_path" {
   description = "Path to the generated private key file"
-  value       = var.create_key_pair ? module.keypair[0].private_key_path : "N/A - using existing key"
+  value       = var.create_key_pair ? module.keypair[0].private_key_path : "N/A - using existing key or Instance Connect"
 }
 
 output "security_group_id" {
   description = "Security group ID"
-  value       = module.security.security_group_id
+  value       = var.create_security_group ? module.security[0].security_group_id : var.security_group_id
 }

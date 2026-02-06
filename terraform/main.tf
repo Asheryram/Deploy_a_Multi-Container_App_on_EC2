@@ -39,9 +39,10 @@ module "keypair" {
   tags        = local.common_tags
 }
 
-# Security Module
+# Security Module (optional - can use existing security group)
 module "security" {
   source = "./modules/security"
+  count  = var.create_security_group ? 1 : 0
 
   name_prefix      = local.name_prefix
   allowed_ssh_cidr = var.allowed_ssh_cidr
@@ -49,15 +50,21 @@ module "security" {
   tags             = local.common_tags
 }
 
+locals {
+  # Use created or existing security group
+  security_group_ids = var.create_security_group ? [module.security[0].security_group_id] : [var.security_group_id]
+  # Use created key or existing (empty string = no SSH key)
+  key_name = var.create_key_pair ? module.keypair[0].key_name : var.key_name
+}
+
 # Compute Module
 module "compute" {
   source = "./modules/compute"
 
   name_prefix        = local.name_prefix
-  ami_id             = var.ami_id
   instance_type      = var.instance_type
-  key_name           = var.create_key_pair ? module.keypair[0].key_name : var.key_name
-  security_group_ids = [module.security.security_group_id]
+  key_name           = local.key_name != "" ? local.key_name : null
+  security_group_ids = local.security_group_ids
   volume_size        = var.volume_size
   repo_url           = var.repo_url
   

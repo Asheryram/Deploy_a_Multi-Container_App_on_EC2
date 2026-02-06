@@ -12,13 +12,25 @@ instance_type    = "t2.micro"
 ami_id           = "ami-0c02fb55956c7d316"
 
 # Key Pair Options
-# Option 1: Let Terraform create a new key pair (recommended)
-create_key_pair  = true
-key_path         = "."  # Where to save the .pem file
+# Option 1: Let Terraform create a new key pair
+# create_key_pair  = true
+# key_path         = "."  # Where to save the .pem file
 
 # Option 2: Use an existing key pair
 # create_key_pair = false
 # key_name        = "your-existing-key-name"
+
+# Option 3: No SSH key (use EC2 Instance Connect via AWS Console)
+create_key_pair = false
+key_name        = ""  # Empty = no SSH key, use Instance Connect
+
+# Security Group Options
+# Option 1: Let Terraform create a new security group
+# create_security_group = true
+
+# Option 2: Use an existing security group (for restricted AWS accounts)
+create_security_group = false
+security_group_id     = "sg-00bdd1c3d5465ef9c"  # Your existing SG
 
 allowed_ssh_cidr = "0.0.0.0/0"  # Replace with your IP: "x.x.x.x/32"
 frontend_port    = 3000
