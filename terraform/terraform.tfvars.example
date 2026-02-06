@@ -1,0 +1,20 @@
+# Copy this file to terraform.tfvars and fill in your values
+# DO NOT commit terraform.tfvars to version control
+
+aws_region       = "us-east-1"
+environment      = "dev"
+instance_type    = "t2.micro"
+
+# Key Pair Options
+# Option 1: Let Terraform create a new key pair (recommended)
+create_key_pair  = true
+key_path         = "."  # Where to save the .pem file
+
+# Option 2: Use an existing key pair
+# create_key_pair = false
+# key_name        = "your-existing-key-name"
+
+allowed_ssh_cidr = "0.0.0.0/0"  # Replace with your IP: "x.x.x.x/32"
+app_port         = 5000
+volume_size      = 20
+repo_url         = "https://github.com/YOUR_USERNAME/Deploy_a_Multi-Container_App_on_EC2.git"

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timesheet App</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="surface-default">
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header surface-brand">
+      <div class="header-content">
+        <h1 class="text-white heading-small">⏱️ Timesheet</h1>
+        <button id="theme-toggle" class="btn-icon" title="Toggle theme">
+          <span id="theme-icon">🌙</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Stats Cards -->
+      <section class="stats-grid">
+        <div class="stat-card surface-brand-subtle">
+          <span class="stat-value text-brand" id="total-entries">0</span>
+          <span class="stat-label text-secondary">Total Entries</span>
+        </div>
+        <div class="stat-card surface-success">
+          <span class="stat-value text-success" id="total-hours">0</span>
+          <span class="stat-label text-secondary">Total Hours</span>
+        </div>
+        <div class="stat-card surface-info">
+          <span class="stat-value text-info" id="today-hours">0</span>
+          <span class="stat-label text-secondary">Today's Hours</span>
+        </div>
+      </section>
+
+      <!-- Add Entry Form -->
+      <section class="card">
+        <h2 class="heading-xsmall text-primary mb-4">Add New Entry</h2>
+        <form id="entry-form" class="entry-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="label-small text-secondary" for="employee_name">Employee Name</label>
+              <input type="text" id="employee_name" name="employee_name" required 
+                     class="input" placeholder="John Doe">
+            </div>
+            <div class="form-group">
+              <label class="label-small text-secondary" for="date">Date</label>
+              <input type="date" id="date" name="date" required class="input">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="label-small text-secondary" for="hours_worked">Hours Worked</label>
+              <input type="number" id="hours_worked" name="hours_worked" required 
+                     class="input" min="0.5" max="24" step="0.5" placeholder="8">
+            </div>
+            <div class="form-group flex-2">
+              <label class="label-small text-secondary" for="description">Description</label>
+              <input type="text" id="description" name="description" 
+                     class="input" placeholder="What did you work on?">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <span>➕</span> Add Entry
+          </button>
+        </form>
+      </section>
+
+      <!-- Entries Table -->
+      <section class="card">
+        <div class="card-header">
+          <h2 class="heading-xsmall text-primary">Recent Entries</h2>
+          <button id="refresh-btn" class="btn btn-secondary">🔄 Refresh</button>
+        </div>
+        <div class="table-container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Employee</th>
+                <th>Date</th>
+                <th>Hours</th>
+                <th>Description</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="entries-tbody">
+              <tr>
+                <td colspan="6" class="text-center text-secondary">Loading...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer surface-subtle">
+      <p class="caption-small text-secondary">Timesheet App • Docker Multi-Container Demo</p>
+    </footer>
+  </div>
+
+  <!-- Edit Modal -->
+  <div id="edit-modal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content card">
+      <h3 class="heading-xsmall text-primary mb-4">Edit Entry</h3>
+      <form id="edit-form">
+        <input type="hidden" id="edit-id">
+        <div class="form-group">
+          <label class="label-small text-secondary" for="edit-employee">Employee Name</label>
+          <input type="text" id="edit-employee" required class="input">
+        </div>
+        <div class="form-group">
+          <label class="label-small text-secondary" for="edit-date">Date</label>
+          <input type="date" id="edit-date" required class="input">
+        </div>
+        <div class="form-group">
+          <label class="label-small text-secondary" for="edit-hours">Hours Worked</label>
+          <input type="number" id="edit-hours" required class="input" min="0.5" max="24" step="0.5">
+        </div>
+        <div class="form-group">
+          <label class="label-small text-secondary" for="edit-description">Description</label>
+          <input type="text" id="edit-description" class="input">
+        </div>
+        <div class="modal-actions">
+          <button type="button" id="cancel-edit" class="btn btn-secondary">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
