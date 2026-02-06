@@ -16,6 +16,13 @@ variable "instance_type" {
   default     = "t2.micro"
 }
 
+variable "ami_id" {
+  description = "AMI ID for the EC2 instance (Amazon Linux 2). Find IDs at https://aws.amazon.com/amazon-linux-ami/"
+  type        = string
+  # Default: Amazon Linux 2 in us-east-1 (update for your region)
+  default     = "ami-0c02fb55956c7d316"
+}
+
 variable "create_key_pair" {
   description = "Whether to create a new key pair (true) or use existing (false)"
   type        = bool

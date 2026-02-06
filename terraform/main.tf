@@ -54,6 +54,7 @@ module "compute" {
   source = "./modules/compute"
 
   name_prefix        = local.name_prefix
+  ami_id             = var.ami_id
   instance_type      = var.instance_type
   key_name           = var.create_key_pair ? module.keypair[0].key_name : var.key_name
   security_group_ids = [module.security.security_group_id]

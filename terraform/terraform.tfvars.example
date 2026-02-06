@@ -5,6 +5,12 @@ aws_region       = "us-east-1"
 environment      = "dev"
 instance_type    = "t2.micro"
 
+# AMI ID - Amazon Linux 2 (update for your region)
+# Find AMI IDs: https://aws.amazon.com/amazon-linux-ami/
+# us-east-1: ami-0c02fb55956c7d316
+# eu-central-1: ami-0a261c0e5f51090b1
+ami_id           = "ami-0c02fb55956c7d316"
+
 # Key Pair Options
 # Option 1: Let Terraform create a new key pair (recommended)
 create_key_pair  = true
