@@ -1,0 +1,212 @@
+<mxfile host="app.diagrams.net" modified="2026-02-17T12:00:00.000Z" agent="Mozilla/5.0" version="22.0.0" type="device">
+  <diagram id="aws-architecture" name="AWS Architecture">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- AWS Cloud Container -->
+        <mxCell id="aws-cloud" value="" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_aws_cloud;strokeColor=#232F3E;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#232F3E;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="1080" height="720" as="geometry" />
+        </mxCell>
+        
+        <!-- AWS Cloud Label -->
+        <mxCell id="aws-label" value="&lt;b&gt;AWS Cloud&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#232F3E;" vertex="1" parent="aws-cloud">
+          <mxGeometry x="10" y="5" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- Region Container -->
+        <mxCell id="region" value="" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_region;strokeColor=#00A4A6;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#147EBA;dashed=1;" vertex="1" parent="aws-cloud">
+          <mxGeometry x="20" y="50" width="1040" height="650" as="geometry" />
+        </mxCell>
+        
+        <!-- Region Label -->
+        <mxCell id="region-label" value="&lt;b&gt;Region: eu-central-1&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#147EBA;" vertex="1" parent="region">
+          <mxGeometry x="10" y="5" width="150" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- VPC Container -->
+        <mxCell id="vpc" value="" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_vpc2;strokeColor=#8C4FFF;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#AAB7B8;dashed=0;" vertex="1" parent="region">
+          <mxGeometry x="20" y="40" width="1000" height="590" as="geometry" />
+        </mxCell>
+        
+        <!-- VPC Label -->
+        <mxCell id="vpc-label" value="&lt;b&gt;Default VPC&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#8C4FFF;" vertex="1" parent="vpc">
+          <mxGeometry x="10" y="5" width="100" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- Public Subnet -->
+        <mxCell id="public-subnet" value="" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_security_group;grStroke=0;strokeColor=#7AA116;fillColor=#E9F3E6;verticalAlign=top;align=left;spacingLeft=30;fontColor=#248814;dashed=0;" vertex="1" parent="vpc">
+          <mxGeometry x="200" y="40" width="580" height="530" as="geometry" />
+        </mxCell>
+        
+        <!-- Public Subnet Label -->
+        <mxCell id="subnet-label" value="&lt;b&gt;Public Subnet&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#248814;" vertex="1" parent="public-subnet">
+          <mxGeometry x="10" y="5" width="120" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- Security Group Container -->
+        <mxCell id="security-group" value="" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=5 5;strokeColor=#DD3522;fillColor=none;strokeWidth=2;" vertex="1" parent="public-subnet">
+          <mxGeometry x="30" y="40" width="520" height="470" as="geometry" />
+        </mxCell>
+        
+        <!-- Security Group Label -->
+        <mxCell id="sg-label" value="&lt;b&gt;Security Group: timesheet-app-sg&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Inbound: SSH(22), Frontend(3000), Backend(5000)&lt;br&gt;Outbound: All Traffic&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#DD3522;" vertex="1" parent="public-subnet">
+          <mxGeometry x="40" y="45" width="280" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- EC2 Instance Container -->
+        <mxCell id="ec2-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;strokeWidth=2;" vertex="1" parent="public-subnet">
+          <mxGeometry x="60" y="110" width="450" height="380" as="geometry" />
+        </mxCell>
+        
+        <!-- EC2 Icon and Label -->
+        <mxCell id="ec2-icon" value="" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ec2;" vertex="1" parent="public-subnet">
+          <mxGeometry x="70" y="115" width="40" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="ec2-label" value="&lt;b&gt;EC2 Instance&lt;/b&gt;&lt;br&gt;timesheet-app-server&lt;br&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;t2.micro | Amazon Linux 2023&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#232F3E;" vertex="1" parent="public-subnet">
+          <mxGeometry x="115" y="115" width="180" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Docker Container Box -->
+        <mxCell id="docker-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;strokeWidth=2;" vertex="1" parent="public-subnet">
+          <mxGeometry x="80" y="175" width="410" height="295" as="geometry" />
+        </mxCell>
+        
+        <!-- Docker Label -->
+        <mxCell id="docker-label" value="&lt;b&gt;Docker Compose&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#1976D2;" vertex="1" parent="public-subnet">
+          <mxGeometry x="90" y="180" width="130" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- Frontend Container -->
+        <mxCell id="frontend-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C8E6C9;strokeColor=#388E3C;strokeWidth=2;" vertex="1" parent="public-subnet">
+          <mxGeometry x="100" y="210" width="110" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="frontend-label" value="&lt;b&gt;Frontend&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;nginx&lt;br&gt;Port 80 → 3000&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#1B5E20;" vertex="1" parent="public-subnet">
+          <mxGeometry x="105" y="225" width="100" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- Backend Container -->
+        <mxCell id="backend-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#BBDEFB;strokeColor=#1976D2;strokeWidth=2;" vertex="1" parent="public-subnet">
+          <mxGeometry x="230" y="210" width="110" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="backend-label" value="&lt;b&gt;Backend&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Express.js&lt;br&gt;Port 5000&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#0D47A1;" vertex="1" parent="public-subnet">
+          <mxGeometry x="235" y="225" width="100" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- MySQL Container -->
+        <mxCell id="mysql-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#EF6C00;strokeWidth=2;" vertex="1" parent="public-subnet">
+          <mxGeometry x="360" y="210" width="110" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="mysql-label" value="&lt;b&gt;MySQL&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;mysql:8.0&lt;br&gt;Port 3306&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#BF360C;" vertex="1" parent="public-subnet">
+          <mxGeometry x="365" y="225" width="100" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- Docker Volume -->
+        <mxCell id="volume" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#7B1FA2;strokeWidth=2;" vertex="1" parent="public-subnet">
+          <mxGeometry x="360" y="330" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="volume-label" value="&lt;b&gt;db_data&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Docker Volume&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#4A148C;" vertex="1" parent="public-subnet">
+          <mxGeometry x="365" y="340" width="100" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- EBS Volume -->
+        <mxCell id="ebs" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE4EC;strokeColor=#C2185B;strokeWidth=2;" vertex="1" parent="public-subnet">
+          <mxGeometry x="100" y="400" width="130" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="ebs-label" value="&lt;b&gt;EBS Volume&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;gp3 | 20GB Root&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#880E4F;" vertex="1" parent="public-subnet">
+          <mxGeometry x="105" y="410" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- Arrows between containers -->
+        <mxCell id="arrow1" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#388E3C;" edge="1" parent="public-subnet" source="frontend-container" target="backend-container">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="220" y="260" as="sourcePoint" />
+            <mxPoint x="240" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow2" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#1976D2;" edge="1" parent="public-subnet" source="backend-container" target="mysql-container">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="350" y="260" as="sourcePoint" />
+            <mxPoint x="370" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow3" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#7B1FA2;" edge="1" parent="public-subnet" source="mysql-container" target="volume">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="415" y="320" as="sourcePoint" />
+            <mxPoint x="415" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Internet Gateway -->
+        <mxCell id="igw" value="" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#8C4FFF;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.internet_gateway;" vertex="1" parent="vpc">
+          <mxGeometry x="70" y="250" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="igw-label" value="&lt;b&gt;Internet&lt;br&gt;Gateway&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#8C4FFF;" vertex="1" parent="vpc">
+          <mxGeometry x="55" y="315" width="90" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- Arrow from IGW to EC2 -->
+        <mxCell id="igw-arrow" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#8C4FFF;" edge="1" parent="vpc" source="igw" target="security-group">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="140" y="280" as="sourcePoint" />
+            <mxPoint x="220" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Users/Internet Icon -->
+        <mxCell id="users" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.users;" vertex="1" parent="region">
+          <mxGeometry x="920" y="250" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="users-label" value="&lt;b&gt;Users&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Internet Traffic&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#232F3E;" vertex="1" parent="region">
+          <mxGeometry x="905" y="315" width="90" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- Arrow from Users to IGW -->
+        <mxCell id="users-arrow" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#232F3E;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="region" source="users" target="igw">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="860" y="320" as="sourcePoint" />
+            <mxPoint x="180" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Port Labels on Arrow -->
+        <mxCell id="ports-box" value="&lt;b&gt;Inbound Ports&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;:22 (SSH)&lt;br&gt;:3000 (Frontend)&lt;br&gt;:5000 (Backend API)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDE7;strokeColor=#FFA000;strokeWidth=1;" vertex="1" parent="region">
+          <mxGeometry x="820" y="375" width="130" height="75" as="geometry" />
+        </mxCell>
+        
+        <!-- SSH Key Info -->
+        <mxCell id="key-box" value="&lt;b&gt;SSH Key Pair&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;timesheet-app-key.pem&lt;br&gt;(Auto-generated)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#43A047;strokeWidth=1;" vertex="1" parent="region">
+          <mxGeometry x="820" y="460" width="130" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Legend -->
+        <mxCell id="legend-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#BDBDBD;strokeWidth=1;" vertex="1" parent="region">
+          <mxGeometry x="820" y="530" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-title" value="&lt;b&gt;Legend&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#424242;" vertex="1" parent="region">
+          <mxGeometry x="830" y="535" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-sg" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;Security Group&lt;/font&gt;" style="text;html=1;strokeColor=#DD3522;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#DD3522;dashed=1;dashPattern=5 5;strokeWidth=2;" vertex="1" parent="region">
+          <mxGeometry x="830" y="555" width="100" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-docker" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;Docker Container&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;strokeWidth=1;fontSize=10;fontColor=#1976D2;" vertex="1" parent="region">
+          <mxGeometry x="830" y="580" width="100" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-traffic" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;Traffic Flow&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#424242;" vertex="1" parent="region">
+          <mxGeometry x="870" y="605" width="80" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-arrow" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#424242;" edge="1" parent="region">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="830" y="615" as="sourcePoint" />
+            <mxPoint x="865" y="615" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
